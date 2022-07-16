@@ -1,5 +1,10 @@
-import { useState } from "react";
-import { Button, Form, Card } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Button, Form, Card, Spinner } from "react-bootstrap";
+import { registerUser, reset } from "../features/auth/authSlice";
+import { toast } from 'react-toastify';
+
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -11,24 +16,63 @@ const Register = () => {
 
   const { name, email, password, password2 } = formData;
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
+  const { user, isLoading, isSuccess, isError, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if(isError) {
+      return toast.error(message)
+    }
+
+    if(user || isSuccess) {
+      navigate('/')
+    }
+
+    dispatch(reset())
+
+  }, [user, isSuccess, isError, message, navigate, dispatch])
+
+
   const onChange = (e) => {
-    console.log(e);
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
-
   };
 
   const isDisabled = () => {
-    if(!name || !email || !password || !password2) {
-        return true
+    if (!name || !email || !password || !password2) {
+      return true;
     }
-  }
+  };
 
   const onSubmit = (e) => {
-    e.preventDefault()
-  }
+    e.preventDefault();
+
+    if(password !== password2) {
+      toast.error('Password does not match')
+    } else {
+      const userData = {
+        name,
+        email,
+        password,
+      };
+
+      dispatch(registerUser(userData));
+
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        password2: "",
+      });
+    }
+    
+  };
 
   return (
     <>
@@ -38,7 +82,7 @@ const Register = () => {
         </Card.Header>
         <Card.Body>
           <Form onSubmit={onSubmit}>
-            <Form.Group className="mb-3" >
+            <Form.Group className="mb-3">
               <Form.Label>Full Name</Form.Label>
               <Form.Control
                 type="text"
@@ -48,7 +92,7 @@ const Register = () => {
                 onChange={onChange}
               />
             </Form.Group>
-            <Form.Group className="mb-3" >
+            <Form.Group className="mb-3">
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 type="email"
@@ -59,7 +103,7 @@ const Register = () => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" >
+            <Form.Group className="mb-3">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
@@ -67,10 +111,9 @@ const Register = () => {
                 name="password"
                 value={password}
                 onChange={onChange}
-                
               />
             </Form.Group>
-            <Form.Group className="mb-3" >
+            <Form.Group className="mb-3">
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 type="password"
@@ -82,7 +125,15 @@ const Register = () => {
             </Form.Group>
             <div className="d-grid">
               <Button variant="success" type="submit" disabled={isDisabled()}>
-                Submit
+                {isLoading ? (
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                ): 'Submit'}
               </Button>
             </div>
           </Form>
