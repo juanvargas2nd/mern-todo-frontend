@@ -133,7 +133,7 @@ const Register = () => {
                     role="status"
                     aria-hidden="true"
                   />
-                ): 'Submit'}
+                ): 'Register'}
               </Button>
             </div>
           </Form>
