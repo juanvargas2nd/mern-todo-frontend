@@ -3,7 +3,6 @@ import authServices from '../../services/authService'
 
 export const registerUser = createAsyncThunk('auth/registerUser', async (user, thunkAPI) => {
     try {
-        console.log('dispatch')
         return await authServices.register(user)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
@@ -20,11 +19,15 @@ export const loginUser = createAsyncThunk('auth/loginUser', async(user, thunkAPI
     }
 })
 
+export const logoutUser = createAsyncThunk('auth/logout', async() => {
+    return authServices.logout()
+})
+
 const user = JSON.parse(localStorage.getItem('user'))
 
 const initialState = {
     user: user ? user : null,
-    isLoading: true,
+    isLoading: false,
     isSuccess: false,
     isError: false,
     message: '',
@@ -35,6 +38,7 @@ const authSlice = createSlice({
     initialState: initialState,
     reducers: {
         reset:(state, action) => {
+            state.user = null
             state.isLoading = false;
             state.isSuccess = false;
             state.isError = false;
@@ -45,7 +49,6 @@ const authSlice = createSlice({
         builder
         .addCase(registerUser.pending, (state, action) => {
             state.isLoading = true;
-            console.log('EXTRA REDUCERS')
         })
         .addCase(registerUser.fulfilled, (state, action) => {
             state.isLoading = false
@@ -60,7 +63,6 @@ const authSlice = createSlice({
         })
         .addCase(loginUser.pending, (state, action) => {
             state.isLoading = true;
-            console.log('EXTRA LOGIN')
         })
         .addCase(loginUser.fulfilled, (state, action) => {
             state.isLoading = false
