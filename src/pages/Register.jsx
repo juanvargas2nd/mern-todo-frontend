@@ -32,8 +32,6 @@ const Register = () => {
       navigate('/')
     }
 
-    dispatch(reset())
-
   }, [user, isSuccess, isError, message, navigate, dispatch])
 
 
