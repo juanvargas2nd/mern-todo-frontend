@@ -5,9 +5,8 @@ import { FaCheck, FaTrashAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 
 const Task = ({ task }) => {
-  const dispatch = useDispatch();
 
-  console.log(task);
+  const dispatch = useDispatch();
 
   return (
     <>

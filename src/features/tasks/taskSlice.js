@@ -142,8 +142,9 @@ const taskSlice = createSlice({
       .addCase(updateTask.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.tasks = state.tasks.map(task => (task._id === action.payload ? {...task, isCompleted: !task.isCompleted}: task))
-        console.log(action.payload)
+        const index = state.tasks.findIndex(task => task._id === action.payload._id);
+        const updatedTask = { ...state.tasks[index], isCompleted: !state.tasks[index].isCompleted };
+        state.tasks[index] = updatedTask
       })
       .addCase(updateTask.rejected, (state, action) => {
         state.isLoading = false

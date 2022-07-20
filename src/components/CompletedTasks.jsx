@@ -3,8 +3,10 @@ import { Card } from "react-bootstrap";
 import { FaTimes, FaTrashAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 
-const Task = ({ task }) => {
+const CompletedTasks = ({ task }) => {
   const dispatch = useDispatch();
+
+  console.log(task);
 
   return (
     <>
@@ -22,4 +24,4 @@ const Task = ({ task }) => {
   );
 };
 
-export default Task;
+export default CompletedTasks;
