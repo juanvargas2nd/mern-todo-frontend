@@ -22,7 +22,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isError) {
-      return toast.error(message);
+      toast.error(message);
     }
 
     if (isSuccess || user) {

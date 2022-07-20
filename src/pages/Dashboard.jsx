@@ -25,7 +25,7 @@ const Dashboard = () => {
     }
 
     if (!user) {
-      return navigate("/login");
+      navigate("/login");
     }
     
     
