@@ -25,7 +25,7 @@ const Register = () => {
 
   useEffect(() => {
     if(isError) {
-      return toast.error(message)
+      toast.error(message)
     }
 
     if(user || isSuccess) {
@@ -84,7 +84,7 @@ const Register = () => {
               <Form.Label>Full Name</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter email"
+                placeholder="Enter Full Name"
                 name="name"
                 value={name}
                 onChange={onChange}

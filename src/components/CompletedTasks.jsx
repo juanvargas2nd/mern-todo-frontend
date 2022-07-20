@@ -6,7 +6,9 @@ import { useDispatch } from "react-redux";
 const CompletedTasks = ({ task }) => {
   const dispatch = useDispatch();
 
-  console.log(task);
+  const cursor = {
+    cursor: 'pointer',
+  }
 
   return (
     <>
@@ -14,8 +16,8 @@ const CompletedTasks = ({ task }) => {
         <Card.Title className="d-flex justify-content-between">
           {task.title}
           <span>
-            <FaTimes className="mx-3" onClick={() => dispatch(updateTask(task._id))} />
-            <FaTrashAlt onClick={() => dispatch(deleteTasks(task._id))} />
+            <FaTimes style={cursor} className="mx-3" onClick={() => dispatch(updateTask(task._id))} />
+            <FaTrashAlt style={cursor} onClick={() => dispatch(deleteTasks(task._id))} />
           </span>
         </Card.Title>
         <Card.Text> Deadline: {task.dueDate}</Card.Text>

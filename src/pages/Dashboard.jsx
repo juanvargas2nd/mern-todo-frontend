@@ -42,13 +42,13 @@ const Dashboard = () => {
       <Container >
         <Card className="mb-2 mx-auto my-4 p-4">
           <Row className="justify-content-center">
-            <div>
-              <Button variant="primary" onClick={() => dispatch(openModal())}>
+            <div className="d-flex justify-content-end">
+              <Button variant="success" onClick={() => dispatch(openModal())}>
                 Add Task
               </Button>
             </div>
             <Col className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-10">
-              <Card className="mb-2 mx-auto my-2">
+              <Card bg="light" text="dark" className="mb-2 mx-auto my-2">
                 <Card.Header>
                   <h3>Pending Tasks</h3>
                 </Card.Header>
@@ -61,7 +61,7 @@ const Dashboard = () => {
               </Card>
             </Col>
             <Col className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-10">
-              <Card className="mb-2 mx-auto my-2">
+              <Card bg="light" text="dark" className="mb-2 mx-auto my-2">
                 <Card.Header>
                   <h3>Completed Tasks</h3>
                 </Card.Header>
