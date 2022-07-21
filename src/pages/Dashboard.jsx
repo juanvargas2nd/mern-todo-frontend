@@ -9,12 +9,9 @@ import TaskForm from "../components/TaskForm";
 import { toast } from "react-toastify";
 
 const Dashboard = () => {
-  // const [completedTasks, setCompletedTasks ] = useState([])
-  // const [pendingTasks, setPendingTasks ] = useState([])
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { tasks, isLoading, isSuccess, isError, message, toggleModal }=useSelector((state) => state.task);
+  const { tasks, isSuccess, isError, message, toggleModal }=useSelector((state) => state.task);
 
   const { user } = useSelector((state) => state.auth);
 
@@ -28,12 +25,7 @@ const Dashboard = () => {
       navigate("/login");
     }
     
-    
     dispatch(getTask());
-
-    // setCompletedTasks(tasks.filter(task => task.isCompleted))
-    // setPendingTasks(tasks.filter(task => !task.isCompleted))
-
 
   }, [user, navigate, isSuccess, isError, message, dispatch, ]);
 

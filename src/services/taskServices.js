@@ -6,7 +6,7 @@ const getTasks = async(token) => {
             Authorization: `Bearer ${token}`
         }
     }
-    const response = await axios.get("http://localhost:8000/api/tasks/", config)
+    const response = await axios.get("http://juan-todo-app.herokuapp.com/api/tasks/", config)
     return response.data
 }
 
@@ -17,7 +17,7 @@ const createTask = async (taskData, token) => {
         }
     }
 
-    const response = await axios.post("http://localhost:8000/api/tasks/", taskData, config)
+    const response = await axios.post("http://juan-todo-app.herokuapp.com/api/tasks/", taskData, config)
 
     return response.data
 }
@@ -29,7 +29,7 @@ const deleteTask = async (id, token) => {
         }
     }
 
-    const response = await axios.delete(`http://localhost:8000/api/tasks/${id}`, config)
+    const response = await axios.delete(`http://juan-todo-app.herokuapp.com/api/tasks/${id}`, config)
 
     return response.data
 }
@@ -42,7 +42,7 @@ const updateTask = async (id, token) => {
     }
 
     const response = await axios({
-        url: `http://localhost:8000/api/tasks/${id}`,
+        url: `http://juan-todo-app.herokuapp.com/api/tasks/${id}`,
         headers: config.headers,
         method: 'put',
     });

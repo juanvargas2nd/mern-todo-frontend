@@ -2,7 +2,7 @@ import axios from "axios";
 
 const register = async (userData) => {
   const response = await axios.post(
-    "http://localhost:8000/api/users/register",
+    "http://juan-todo-app.herokuapp.com/api/tasks/users/register",
     userData
   );
   if (response.data) {
@@ -12,7 +12,7 @@ const register = async (userData) => {
 };
 
 const login = async(user) => {
-        const response = await axios.post("http://localhost:8000/api/users/login", user)
+        const response = await axios.post("http://juan-todo-app.herokuapp.com/api/tasks/api/users/login", user)
 
     if(response.data) {
         localStorage.setItem('user', JSON.stringify(response.data))
