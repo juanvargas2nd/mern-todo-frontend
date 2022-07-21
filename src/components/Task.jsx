@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { getTask, deleteTasks, updateTask } from "../features/tasks/taskSlice";
+import { deleteTasks, updateTask } from "../features/tasks/taskSlice";
 import { Card } from "react-bootstrap";
 import { FaCheck, FaTrashAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";

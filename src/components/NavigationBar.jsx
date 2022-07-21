@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import {logoutUser, reset} from '../features/auth/authSlice'
-import { useEffect } from "react";
 
 const NavigationBar = () => {
   const { user } = useSelector((state) => state.auth);

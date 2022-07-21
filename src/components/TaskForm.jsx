@@ -1,8 +1,7 @@
 import { Card, Form, Button, Modal } from "react-bootstrap";
 import { useState } from "react";
-import { toast } from "react-toastify";
-import { useDispatch, useSelector } from "react-redux";
-import { postTask, getTask, closeModal } from "../features/tasks/taskSlice";
+import { useDispatch } from "react-redux";
+import { postTask, closeModal } from "../features/tasks/taskSlice";
 
 const TaskForm = ({show}) => {
   const [formDate, setFormData] = useState({
@@ -13,8 +12,6 @@ const TaskForm = ({show}) => {
   const { title, dueDate } = formDate;
 
   const dispatch = useDispatch();
-
-  const { toggleModal, isSuccess } = useSelector((state) => state.task);
 
   const onChange = (e) => {
     setFormData((prevState) => ({

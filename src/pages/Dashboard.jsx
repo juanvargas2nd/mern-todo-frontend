@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import {useEffect } from "react";
 import { Card, Container, Button, Row, Col } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { getTask, openModal } from "../features/tasks/taskSlice";
